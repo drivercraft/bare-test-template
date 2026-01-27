@@ -4,9 +4,9 @@ name = "project-name"
 version = "0.1.0"
 
 [dependencies]
-mbarrier = "0.1"
-dma-api = { version = "0.5", features = ["alloc"] }
+dma-api = {version = "0.7"}
 log = "0.4"
+mbarrier = "0.1"
 
 [dev-dependencies]
 bare-test = "0.7"
