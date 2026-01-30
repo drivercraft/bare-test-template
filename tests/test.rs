@@ -7,15 +7,18 @@ extern crate bare_test;
 
 #[bare_test::tests]
 mod tests {
-    use bare_test::println;
+    use bare_test::{mem::iomap, println};
     use log::info;
+    use project_name::MyDriver;
 
     #[test]
     fn it_works() {
-        info!("This is a test log message.");
-        let a = 2;
-        let b = 2;
-        assert_eq!(a + b, 4);
+        let demo_reg_base = 0x1000_0000;
+        let mmio = iomap(demo_reg_base.into(), 0x1000);
+        info!("MMIO mapped at: {:p}", mmio.as_ptr());
+        let mut driver = MyDriver::new(mmio);
+        driver.initialize();
+
         println!("test passed!");
     }
 }
